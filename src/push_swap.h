@@ -32,6 +32,14 @@ typedef struct s_stack
 	int max;
 } t_stack;
 
+typedef struct s_ops
+{
+	int ra;
+	int rb;
+	int sa;
+	int sb;
+} t_ops;
+
 typedef struct s_instr
 {
 	char bufr[BUFR_LEN];
