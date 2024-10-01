@@ -33,6 +33,19 @@
     //return (-1 * (b->len - i));
 //}
 
+int ft_calctotops(int i, int j)
+{
+    int v[2];
+
+    v[0] = i;
+    v[1] = j;
+    if (i >=  0 && j >= 0)
+        return (ft_max(v, 2));
+    if (i < 0 && j < 0)
+        return (ft_abs(ft_min(v, 2)));
+    return (ft_abs(i) + ft_abs(j));
+}
+
 int ft_convtry(t_stack *a, t_stack *b, int i)
 {
     int j;
@@ -66,6 +79,33 @@ int ft_calcrotations(t_stack *a, t_stack *b, t_ops *ops)
 {
     //iterar i e ir guardando en *ops las instrucciones si son mas pequeñas que
     //la anterior
+
+    int i;
+    int j;
+    int tot_ops;
+    int act_ops;
+
+    act_ops = INT_MAX;
+    i = 0;
+    while (i < a->len)
+    {
+        j = ft_convtry(a, b, i);
+        tot_ops = ft_calctotops(i, j);
+        if (tot_ops < act_ops)
+        {
+            ops->ra = i;
+            ops->rb = j;
+            act_ops = tot_ops;
+        }
+        tot_ops = ft_calctotops(i - a->len, j);
+        if (tot_ops < act_ops)
+        {
+            ops->ra = i - a->len;
+            ops->rb = j;
+            act_ops = tot_ops;
+        }
+        i++;
+    }
 }
 
 
