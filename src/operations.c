@@ -35,7 +35,7 @@ void ft_push(t_stack *src, t_stack *dst)
     printf("p%c\n", dst->name);
 }
 
-void ft_rot(t_stack *stack)
+void ft_rot(t_stack *stack, char print)
 {
     int tmp;
     int i;
@@ -48,10 +48,11 @@ void ft_rot(t_stack *stack)
         i++;
     }
     stack->arr[i] = tmp;
-    printf("r%c\n", stack->name);
+    if (print != 0)
+        printf("r%c\n", stack->name);
 }
 
-void ft_rrot(t_stack *stack)
+void ft_rrot(t_stack *stack, char print)
 {
     int tmp;
     int i;
@@ -64,5 +65,22 @@ void ft_rrot(t_stack *stack)
         i--;
     }
     stack->arr[i] = tmp;
-    printf("rr%c\n", stack->name);
+    if (print != 0)
+        printf("rr%c\n", stack->name);
+}
+
+void ft_rotboth(t_stack *a, t_stack *b, char direction)
+{
+    if (direction == 'f')
+    {
+        ft_rot(a, 0);
+        ft_rot(b, 0);
+        printf("rr\n");
+    }
+    if (direction == 'r')
+    {
+        ft_rrot(a, 0);
+        ft_rrot(b, 0);
+        printf("rrr\n");
+    }
 }

@@ -42,7 +42,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	main debugging operations my_algorithm
+SRC_FILES	=	main debugging check_input operations my_algorithm dooperations calcrotations
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
