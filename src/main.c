@@ -46,17 +46,19 @@ int main(int argc, char **argv)
     if (argc < 2)
         return(0);
     if (ft_check_argv(argc, argv) == 0)
-	{
         return (1);
-	}
     ft_buildstack(&a, argc, argv, 'a');
     ft_buildstack(&b, argc, NULL, 'b');
     if (!ft_isordered(&a))
     {
         if (a.len == 2)
             ft_swap(&a);
-        //else if (a.len <= 5)
-            //ft_ordersmallarray(&a, &b);
+        if (a.len == 3)
+        {
+            ft_rotuntilordered(&a);
+            ft_order3elarray(&a);
+            ft_rotuntilordered(&a);
+        }
         else
             ft_buildinstructions(&a, &b);
     }

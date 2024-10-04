@@ -64,13 +64,15 @@ void ft_rrot(t_stack *stack, char print);
 void ft_rotboth(t_stack *a, t_stack *b, char direction);
 
 // Algorithm
+void ft_rotuntilordered(t_stack *s);
+void ft_order3elarray(t_stack *s);
 void ft_buildinstructions(t_stack *a, t_stack *b);
 
 // Calculate optimal rotations
 void ft_calcrotations(t_stack *a, t_stack *b, t_ops *ops);
 int ft_convtry(t_stack *b, int n);
 int ft_minmaxcase(t_stack *b);
-int ft_calctotops(int i, int j);
+int ft_calcoptops(t_ops *ops, int act_ops, int i, int j);
 
 // Execute operations
 void ft_doops(t_stack *a, t_stack *b, t_ops *ops);

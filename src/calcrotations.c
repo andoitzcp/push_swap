@@ -1,60 +1,73 @@
 #include "push_swap.h"
 
-int ft_calctotops(int i, int j)
+int ft_calcoptops(t_ops *ops, int act_ops, int i, int j)
 {
     int v[2];
+    int tmp_ops;
 
     v[0] = i;
     v[1] = j;
     if (i >=  0 && j >= 0)
-        return (ft_max(v, 2));
-    if (i < 0 && j < 0)
-        return (ft_abs(ft_min(v, 2)));
-    return (ft_abs(i) + ft_abs(j));
+        tmp_ops = ft_max(v, 2);
+    else if (i < 0 && j < 0)
+        tmp_ops = ft_abs(ft_min(v, 2));
+    else
+        tmp_ops = ft_abs(i) + ft_abs(j);
+    if (act_ops <= tmp_ops)
+        return (act_ops);
+    ops->ra = i;
+    ops->rb = j;
+    return (tmp_ops);
 }
 
-int ft_minmaxcase(t_stack *b)
+char ft_isbetweenminmax(t_stack *stack, int i, int j)
 {
-    int i;
-    int j;
+    int n;
+    int m;
+    char c;
 
+    n = stack->arr[i];
+    m = stack->arr[j];
+    c = stack->name;
+    if (n == stack->max && m == stack->min && c == 'b')
+        return (1);
+    if (n == stack->min && m == stack->max && c == 'a')
+        return (1);
+    return (0);
 
-    i = 0;
-    j = b->len - 1;
-    while (b->arr[j] != b->min && b->arr[i] != b->max)
+}
+
+char ft_ispostoinsert(t_stack *s, int n, int i, int j)
+{
+    if ((n < s->min || n > s->max) && ft_isbetweenminmax(s, i, j))
+        return (1);
+    if (n > s->min && n < s->max && !ft_isbetweenminmax(s, i, j))
     {
-        j = i;
-        i++;
+        if (s->name == 'a' && s->arr[j] < n && s->arr[i] > n)
+            return (1);
+        if (s->name == 'b' && s->arr[j] > n && s->arr[i] < n)
+            return (1);
     }
-    if (i <= b->len - i)
-        return (i);
-    return (-1 * (b->len - i));
+    return (0);
 }
 
-int ft_convtry(t_stack *b, int n)
+int ft_convtry(t_stack *s, int n)
 {
     int i;
     int j;
 
     i = 0;
-    j = b->len - 1;
-    if (n < b->min || n > b->max)
-        return(ft_minmaxcase(b));
-    while (i < b->len)
+    j = s->len - 1;
+    while (i < s->len)
     {
-        if (b->arr[i] == b->max && b->arr[j] == b->min)
-        {
-            j = i;
-            i++;
-        }
-        if (n < b->arr[j] && n > b->arr[i])
+        if (ft_ispostoinsert(s, n, i, j))
             break;
         j = i;
         i++;
     }
-    if (i <= b->len - i)
+    if (i <= s->len - i)
         return (i);
-    return (-1 * (b->len - i));
+    return (-1 * (s->len - i));
 }
 
 void ft_calcrotations(t_stack *a, t_stack *b, t_ops *ops)
@@ -62,27 +75,14 @@ void ft_calcrotations(t_stack *a, t_stack *b, t_ops *ops)
     int i;
     int j;
     int tot_ops;
-    int act_ops;
 
-    act_ops = INT_MAX;
+    tot_ops = INT_MAX;
     i = 0;
     while (i < a->len)
     {
         j = ft_convtry(b, a->arr[i]);
-        tot_ops = ft_calctotops(i, j);
-        if (tot_ops < act_ops)
-        {
-            ops->ra = i;
-            ops->rb = j;
-            act_ops = tot_ops;
-        }
-        tot_ops = ft_calctotops(i - a->len, j);
-        if (tot_ops < act_ops)
-        {
-            ops->ra = i - a->len;
-            ops->rb = j;
-            act_ops = tot_ops;
-        }
+        tot_ops = ft_calcoptops(ops, tot_ops, i, j);
+        tot_ops = ft_calcoptops(ops, tot_ops, i - a->len, j);
         i++;
     }
 }
