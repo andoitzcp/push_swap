@@ -6,7 +6,7 @@
 /*   By: acampo-p <acampo-p@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:11:32 by acampo-p          #+#    #+#             */
-/*   Updated: 2022/12/14 13:10:31 by acampo-p         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:42:00 by acampo-p@        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (start >= ft_strlen(s))
 	{
-			len = 0;
-			start = 0;
+		len = 0;
+		start = 0;
 	}
 	sublen = ft_strlen(&s[start]);
 	if (sublen < len)

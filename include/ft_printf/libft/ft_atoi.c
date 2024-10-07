@@ -6,7 +6,7 @@
 /*   By: acampo-p <acampo-p@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 09:44:25 by acampo-p          #+#    #+#             */
-/*   Updated: 2022/12/09 19:30:17 by acampo-p         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:41:35 by acampo-p@        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,4 @@ int	ft_atoi(const char *nptr)
 	}
 	nbr = nbr * sign / 10;
 	return ((int)nbr);
-}		
+}
