@@ -2,3 +2,5 @@
 *.o
 /checker
 /a.out
+/push_swap
+/obj
