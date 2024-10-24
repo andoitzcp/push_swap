@@ -42,7 +42,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	main debugging check_input operations my_algorithm dooperations calcrotations
+SRC_FILES	=	main check_input operations my_algorithm dooperations calcrotations
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -55,7 +55,7 @@ OBJF		=	.cache_exists
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(LIBFT_A) $(FT_PRINTF_A) $(HEADERS)
-			@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft -L$(FT_PRINTF) -lftprintf -o $(NAME) -lXext -lX11
+			@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft -L$(FT_PRINTF) -lftprintf -o $(NAME)
 			@echo "$(GREEN)fdf compiled!$(DEF_COLOR)"
 
 $(LIBFT_A):
@@ -76,7 +76,6 @@ clean:
 			@$(RM) -rf $(OBJ_DIR)
 			@$(MAKE) clean -C $(LIBFT)
 			@$(MAKE) clean -C $(FT_PRINTF)
-			@$(MAKE) clean -C $(MLX)
 			@echo "$(BLUE)$(NAME) object files succesfully cleaned!$(DEF_COLOR)"
 
 fclean:		clean

@@ -4,3 +4,7 @@
 /a.out
 /push_swap
 /obj
+/push_swap_test_linux.sh
+/checker_linux
+/pro_checker
+/traces.txt

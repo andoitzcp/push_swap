@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap.h                                     :+:    :+: :+:    :+:    */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acampo-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:22:26 by acampo-p          #+#    #+#             */
-/*   Updated: 2024/10/07 13:17:46 by acampo-p@        ###   ########.fr       */
+/*   Updated: 2024/10/24 14:38:58 by andoitzcp   ########  ###                */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void	ft_printstack(t_stack *stack);
 // Input checking
 void	ft_returnwitherror(void);
 int		ft_check_argv(int argc, char **argv);
-int		ft_isrepeated(char **array, char *s);
+int		ft_isrepeated(t_stack *stack);
 int		ft_isinteger(char *s);
+int		ftisbtwnlimits(char *s);
 
 // Operations
 void	ft_swap(t_stack *stack);
@@ -69,3 +70,7 @@ int		ft_calcoptops(t_ops *ops, int act_ops, int i, int j);
 void	ft_doops(t_stack *a, t_stack *b, t_ops *ops);
 void	ft_forwardops(t_stack *a, t_stack *b, t_ops *ops);
 void	ft_reverseops(t_stack *a, t_stack *b, t_ops *ops);
+
+// main
+void	ft_buildstack(t_stack *stack, int sz, char **content, char name);
+char	ft_isordered(t_stack *stack);
